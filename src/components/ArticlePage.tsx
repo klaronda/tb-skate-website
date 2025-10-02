@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 import { ArrowLeft, Calendar, Clock, User, Share2, Tag } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
 import { Badge } from './ui/badge';
@@ -22,7 +23,7 @@ export function ArticlePage({ articleId, onNavigate }: ArticlePageProps) {
         category: 'Product Launch',
         tags: ['AI', 'Computer Vision', 'Skateboarding', 'API', 'Technology', 'Sports Analytics', 'Machine Learning'],
         excerpt: 'Skateboarding is a sport built on motion, balance, and nuance. Trickbase AI steps in to analyze skateboarding footage, detect tricks, score execution, and return deep metadata - all in a developer-friendly package.',
-        heroImage: 'https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.jpg',
+        heroImage: 'https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.png',
         content: `
 # Introducing Trickbase: AI That Sees Skateboarding Tricks
 
@@ -184,9 +185,24 @@ Be among the first to experiment with Trickbase. Join the **early-access waitlis
 
         {/* Article Content */}
         <div className="prose prose-lg prose-invert max-w-none">
-          <div className="text-gray-300 leading-relaxed whitespace-pre-line">
+          <ReactMarkdown 
+            className="text-gray-300 leading-relaxed"
+            components={{
+              h1: ({children}) => <h1 className="text-3xl text-white font-bold mb-6 mt-8">{children}</h1>,
+              h2: ({children}) => <h2 className="text-2xl text-white font-semibold mb-4 mt-6">{children}</h2>,
+              h3: ({children}) => <h3 className="text-xl text-white font-semibold mb-3 mt-5">{children}</h3>,
+              p: ({children}) => <p className="text-gray-300 mb-4 leading-relaxed">{children}</p>,
+              ul: ({children}) => <ul className="list-disc list-inside text-gray-300 mb-4 space-y-2">{children}</ul>,
+              ol: ({children}) => <ol className="list-decimal list-inside text-gray-300 mb-4 space-y-2">{children}</ol>,
+              li: ({children}) => <li className="text-gray-300">{children}</li>,
+              strong: ({children}) => <strong className="text-white font-semibold">{children}</strong>,
+              em: ({children}) => <em className="text-gray-200 italic">{children}</em>,
+              code: ({children}) => <code className="bg-gray-800 text-blue-300 px-2 py-1 rounded text-sm">{children}</code>,
+              blockquote: ({children}) => <blockquote className="border-l-4 border-blue-500 pl-4 italic text-gray-400 my-4">{children}</blockquote>
+            }}
+          >
             {article.content}
-          </div>
+          </ReactMarkdown>
         </div>
 
         {/* Author Info */}
