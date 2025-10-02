@@ -1,3 +1,4 @@
+import React from 'react';
 import { Video, Trophy, Cpu, Camera, BarChart3, Smartphone } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { ImageWithFallback } from './figma/ImageWithFallback';

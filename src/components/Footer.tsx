@@ -1,3 +1,4 @@
+import React from 'react';
 import { Separator } from './ui/separator';
 
 type Page = 'home' | 'metrics' | 'documentation' | 'about' | 'privacy' | 'terms';
