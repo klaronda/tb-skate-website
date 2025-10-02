@@ -34,7 +34,8 @@ export function CredibilitySection() {
               ))}
             </div>
 
-            <div className="flex gap-4">
+            {/* Documentation button hidden until ready */}
+            {/* <div className="flex gap-4">
               <Button 
                 className="flex items-center gap-2 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                 aria-label="View API documentation"
@@ -43,15 +44,15 @@ export function CredibilitySection() {
                 Documentation
                 <ExternalLink className="w-3 h-3" aria-hidden="true" />
               </Button>
-            </div>
+            </div> */}
           </div>
 
           {/* Visual */}
           <div className="relative">
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1649877508777-1554357604eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwY29tcHV0ZXIlMjB2aXNpb24lMjBBSXxlbnwxfHx8fDE3NTg5MjI5NTl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-              alt="Technology and AI visualization"
-              className="w-full h-80 object-cover rounded-lg"
+              src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYWNib29rJTIwcHJvJTIwZGV2ZWxvcG1lbnQlMjBjb2RlJTIwdGVjaG5vbG9neXxlbnwxfHx8fDE3NTg5MjI5NTl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              alt="Modern development setup with MacBook Pro displaying code"
+              className="w-full h-80 object-cover object-center rounded-lg"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent rounded-lg"></div>
             <div className="absolute bottom-6 left-6 right-6 text-white">
