@@ -103,25 +103,19 @@ export function AboutPage() {
                   </p>
                 </div>
                 <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg blur-xl opacity-30"></div>
-                  <div className="relative bg-gray-800 p-8 rounded-lg border border-gray-700">
-                    <div className="grid grid-cols-2 gap-6 text-center">
-                      <div>
-                        <div className="text-3xl text-blue-300 mb-2">2019</div>
-                        <div className="text-gray-400">Founded</div>
-                      </div>
-                      <div>
-                        <div className="text-3xl text-purple-300 mb-2">4</div>
-                        <div className="text-gray-400">Co-founders</div>
-                      </div>
-                      <div>
-                        <div className="text-3xl text-green-300 mb-2">50+</div>
-                        <div className="text-gray-400">Cities</div>
-                      </div>
-                      <div>
-                        <div className="text-3xl text-yellow-300 mb-2">∞</div>
-                        <div className="text-gray-400">Passion</div>
-                      </div>
+                  <img
+                    src="https://images.unsplash.com/photo-1592503254512-f31277392770?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1cmJhbiUyMHNrYXRlYm9hcmRpbmclMjBjb21tdW5pdHl8ZW58MXx8fHwxNzU4OTIyOTU5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                    alt="Urban skateboarding community"
+                    className="w-full h-64 object-cover object-center rounded-lg"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-lg"></div>
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <div className="p-4 bg-gray-900/90 backdrop-blur-sm rounded-lg border border-gray-700">
+                      <p className="text-sm text-white">
+                        <strong>"Built by Skaters, for Skaters."</strong>
+                        <br />
+                        <span className="text-gray-300">— Our commitment to genuine skateboarding experience</span>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -263,8 +257,8 @@ export function AboutPage() {
           </div>
         </section>
 
-        {/* Achievements Grid */}
-        <section className="mb-20">
+        {/* What We Bring section hidden until ready */}
+        {/* <section className="mb-20">
           <div className="text-center mb-12">
             <h2 className="text-white mb-4">What We Bring</h2>
             <p className="text-gray-300 text-lg max-w-3xl mx-auto">
@@ -287,7 +281,7 @@ export function AboutPage() {
               </Card>
             ))}
           </div>
-        </section>
+        </section> */}
 
         {/* Vision Statement */}
         <section className="mb-20">
