@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 
 export function TermsOfServicePage() {
-  const lastUpdated = "January 15, 2024";
+  const lastUpdated = "October 1, 2025";
 
   const serviceTerms = [
     {

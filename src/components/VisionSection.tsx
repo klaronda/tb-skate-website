@@ -79,7 +79,7 @@ export function VisionSection() {
           <ImageWithFallback
             src="https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/future-snowboarder-action.jpg"
             alt="Future action sports technology - snowboarder performing aerial trick"
-            className="w-full h-64 lg:h-96 object-cover object-center rounded-lg"
+            className="w-full h-64 lg:h-96 object-cover object-top rounded-lg"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-lg"></div>
           <div className="absolute bottom-6 left-6 right-6">
