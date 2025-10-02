@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { supabase } from '../lib/supabase';
 
 interface BlogPageProps {
   onNavigateToArticle: (articleId: string) => void;
@@ -18,6 +19,7 @@ interface BlogPost {
   hero_image_url: string;
   tags: string[];
   published_at: string;
+  read_time: string;
 }
 
 export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
@@ -25,21 +27,52 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // For now, we'll use the blog post we just added to the database
-    // In a real app, you'd fetch from Supabase here
-    const realBlogPost: BlogPost = {
-      id: "1",
-      title: "Introducing Trickbase: AI That Sees Skateboarding Tricks",
-      slug: "introducing-trickbase-ai-skateboarding-tricks",
-      excerpt: "Skateboarding is a sport built on motion, balance, and nuance. Trickbase AI steps in to analyze skateboarding footage, detect tricks, score execution, and return deep metadata - all in a developer-friendly package.",
-      author: "Trickbase AI Team",
-      hero_image_url: "https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.png",
-      tags: ["AI", "Computer Vision", "Skateboarding", "API", "Technology", "Sports Analytics", "Machine Learning"],
-      published_at: "2025-10-01T00:00:00Z"
+    const fetchBlogPosts = async () => {
+      setLoading(true);
+      try {
+        const { data, error } = await supabase
+          .from('blog_posts')
+          .select('*')
+          .order('published_at', { ascending: false });
+
+        if (error) {
+          throw error;
+        }
+
+        if (data) {
+          setBlogPosts(data.map(post => ({
+            id: post.id.toString(),
+            title: post.title,
+            slug: post.slug,
+            excerpt: post.excerpt,
+            author: post.author,
+            hero_image_url: post.hero_image_url,
+            tags: post.tags,
+            published_at: post.published_at,
+            read_time: post.read_time || '8 min read',
+          })));
+        }
+      } catch (err) {
+        console.error("Error fetching blog posts:", err);
+        // Fallback to hardcoded post if database fails
+        const realBlogPost: BlogPost = {
+          id: "1",
+          title: "Introducing Trickbase: AI That Sees Skateboarding Tricks",
+          slug: "introducing-trickbase-ai-skateboarding-tricks",
+          excerpt: "Skateboarding is a sport built on motion, balance, and nuance. Trickbase AI steps in to analyze skateboarding footage, detect tricks, score execution, and return deep metadata - all in a developer-friendly package.",
+          author: "Trickbase AI Team",
+          hero_image_url: "https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.png",
+          tags: ["AI", "Computer Vision", "Skateboarding", "API", "Technology", "Sports Analytics", "Machine Learning"],
+          published_at: "2025-10-01T00:00:00Z",
+          read_time: "8 min read"
+        };
+        setBlogPosts([realBlogPost]);
+      } finally {
+        setLoading(false);
+      }
     };
-    
-    setBlogPosts([realBlogPost]);
-    setLoading(false);
+
+    fetchBlogPosts();
   }, []);
 
   const formatDate = (dateString: string) => {
@@ -91,7 +124,7 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
                   <ImageWithFallback
                     src={blogPosts[0].hero_image_url}
                     alt={blogPosts[0].title}
-                    className="w-full h-64 lg:h-full object-cover"
+                    className="w-full h-64 lg:h-full object-cover object-bottom"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                 </div>
@@ -104,7 +137,7 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
                     </div>
                     <div className="flex items-center gap-2 text-gray-400 text-sm">
                       <Clock className="w-4 h-4" />
-                      <span>{getReadTime(blogPosts[0].excerpt)}</span>
+                      <span>{blogPosts[0].read_time}</span>
                     </div>
                   </div>
                   
@@ -127,7 +160,7 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                        <span className="text-white text-sm font-semibold">TA</span>
+                        <span className="text-white text-sm font-semibold">TT</span>
                       </div>
                       <div>
                         <p className="text-white font-medium">{blogPosts[0].author}</p>

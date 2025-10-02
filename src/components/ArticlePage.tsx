@@ -20,13 +20,11 @@ export function ArticlePage({ articleId, onNavigate }: ArticlePageProps) {
         author: 'Trickbase AI Team',
         publishDate: '2025-10-01',
         readTime: '8 min read',
-        category: 'Product Launch',
+        category: 'AI Technology',
         tags: ['AI', 'Computer Vision', 'Skateboarding', 'API', 'Technology', 'Sports Analytics', 'Machine Learning'],
         excerpt: 'Skateboarding is a sport built on motion, balance, and nuance. Trickbase AI steps in to analyze skateboarding footage, detect tricks, score execution, and return deep metadata - all in a developer-friendly package.',
         heroImage: 'https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.png',
         content: `
-# Introducing Trickbase: AI That Sees Skateboarding Tricks
-
 Skateboarding is a sport built on motion, balance, and nuance. Each trick tells a story – from the approach, to the pop, to the landing. But capturing the full detail of what happens in-between is still largely analog: video review, slow motion, manual tagging. That's where **Trickbase AI** steps in.
 
 Trickbase is an AI engine built to analyze skateboarding footage, detect tricks, score execution, and return deep metadata – all in a developer-friendly package. Whether you're building a video app, running contests, or enhancing sports analytics, Trickbase is the background brain that brings skate into the world of real-time insight.
@@ -66,15 +64,15 @@ Skateboarding has niche in tech tools. There's little competition doing what we 
 
 Here's how the "magic" happens, in digestible steps:
 
-1. **Frame Sampling / Extraction**: Break the video into frames or short clips, sampling at optimal intervals.
+- **Frame Sampling / Extraction**: Break the video into frames or short clips, sampling at optimal intervals.
 
-2. **Pose Estimation & Feature Extraction**: Use pose estimation (body joints, board edges, foot positions) + motion features to get a condensed representation.
+- **Pose Estimation & Feature Extraction**: Use pose estimation (body joints, board edges, foot positions) + motion features to get a condensed representation.
 
-3. **Trick Classification Model**: A neural network (CNNs, temporal networks, or hybrid architectures) classifies which trick(s) occurred in a clip.
+- **Trick Classification Model**: A neural network (CNNs, temporal networks, or hybrid architectures) classifies which trick(s) occurred in a clip.
 
-4. **Scoring & Metadata Layer**: On top, a scoring engine weights execution features (landing stability, rotation smoothness, consistency over time) to assign metrics.
+- **Scoring & Metadata Layer**: On top, a scoring engine weights execution features (landing stability, rotation smoothness, consistency over time) to assign metrics.
 
-5. **Return Structured Output**: The API returns JSON: trick name(s), confidence, timestamps, score, extra metadata (e.g. airtime, rotation).
+- **Return Structured Output**: The API returns JSON: trick name(s), confidence, timestamps, score, extra metadata (e.g. airtime, rotation).
 
 In academic work, similar approaches have succeeded. For example, the **SkateboardAI** dataset is a benchmark for video action recognition in skateboarding – using CNN + temporal models to classify many trick classes. Also, motion-based sensors (accelerometers) have been used to classify skate tricks with high accuracy in controlled settings. These research paths bolster the viability of Trickbase AI's approach.
 
@@ -176,11 +174,11 @@ Be among the first to experiment with Trickbase. Join the **early-access waitlis
 
         {/* Hero Image */}
         <div className="mb-12">
-          <ImageWithFallback
-            src={article.heroImage}
-            alt={article.title}
-            className="w-full h-64 lg:h-96 object-cover object-center rounded-lg"
-          />
+        <ImageWithFallback
+          src={article.heroImage}
+          alt={article.title}
+          className="w-full h-64 lg:h-96 object-cover object-bottom rounded-lg"
+        />
         </div>
 
         {/* Article Content */}
@@ -189,10 +187,10 @@ Be among the first to experiment with Trickbase. Join the **early-access waitlis
             className="text-gray-300 leading-relaxed"
             components={{
               h1: ({children}) => <h1 className="text-3xl text-white font-bold mb-6 mt-8">{children}</h1>,
-              h2: ({children}) => <h2 className="text-2xl text-white font-semibold mb-4 mt-6">{children}</h2>,
+              h2: ({children}) => <h2 className="text-2xl text-white font-medium mb-4 mt-6">{children}</h2>,
               h3: ({children}) => <h3 className="text-xl text-white font-semibold mb-3 mt-5">{children}</h3>,
               p: ({children}) => <p className="text-gray-300 mb-4 leading-relaxed">{children}</p>,
-              ul: ({children}) => <ul className="list-disc list-inside text-gray-300 mb-4 space-y-2">{children}</ul>,
+              ul: ({children}) => <ul className="list-disc text-gray-300 mb-4 space-y-2 ml-6">{children}</ul>,
               ol: ({children}) => <ol className="list-decimal list-inside text-gray-300 mb-4 space-y-2">{children}</ol>,
               li: ({children}) => <li className="text-gray-300">{children}</li>,
               strong: ({children}) => <strong className="text-white font-semibold">{children}</strong>,
