@@ -124,7 +124,7 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
                   <ImageWithFallback
                     src={blogPosts[0].hero_image_url}
                     alt={blogPosts[0].title}
-                    className="w-full h-64 lg:h-full object-cover object-bottom"
+                    className="w-full h-64 lg:h-full object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                 </div>
@@ -179,6 +179,63 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
                 </CardContent>
               </div>
             </Card>
+          </div>
+        )}
+
+        {/* All Blog Posts */}
+        {blogPosts.length > 1 && (
+          <div className="mb-16">
+            <h2 className="text-2xl text-white mb-8">All Posts</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {blogPosts.map((post, index) => (
+                <Card key={post.id} className="bg-gray-800 border-gray-700 hover:border-blue-600 transition-colors">
+                  <div className="relative">
+                    <ImageWithFallback
+                      src={post.hero_image_url}
+                      alt={post.title}
+                      className="w-full h-48 object-cover object-center rounded-t-lg"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <Badge className="bg-blue-600 text-white">
+                        {index === 0 ? 'Latest' : 'Archive'}
+                      </Badge>
+                    </div>
+                  </div>
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-2 text-gray-400 text-sm mb-3">
+                      <Calendar className="w-4 h-4" />
+                      <span>{formatDate(post.published_at)}</span>
+                      <Clock className="w-4 h-4 ml-2" />
+                      <span>{post.read_time}</span>
+                    </div>
+                    
+                    <CardTitle className="text-xl text-white mb-3 line-clamp-2">
+                      {post.title}
+                    </CardTitle>
+                    
+                    <CardDescription className="text-gray-300 text-sm mb-4 line-clamp-3">
+                      {post.excerpt}
+                    </CardDescription>
+                    
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {post.tags.slice(0, 3).map((tag, tagIndex) => (
+                        <Badge key={tagIndex} variant="secondary" className="bg-gray-700 text-gray-300 text-xs">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                    
+                    <Button 
+                      variant="link" 
+                      className="text-blue-400 hover:text-blue-300 p-0 h-auto justify-start text-sm"
+                      onClick={() => onNavigateToArticle(post.slug)}
+                    >
+                      Read More <ArrowRight className="w-3 h-3 ml-1" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         )}
 
