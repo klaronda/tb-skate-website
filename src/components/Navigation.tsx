@@ -14,8 +14,8 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
 
   const navItems = [
     { name: 'Home', page: 'home' as Page, href: '#home' },
-    { name: 'Metrics', page: 'metrics' as Page, href: '#metrics' },
-    { name: 'Documentation', page: 'documentation' as Page, href: '#docs' },
+    // { name: 'Metrics', page: 'metrics' as Page, href: '#metrics' }, // Hidden until ready
+    // { name: 'Documentation', page: 'documentation' as Page, href: '#docs' }, // Hidden until ready
     { name: 'Blog', page: 'blog' as Page, href: '#blog' },
     { name: 'About', page: 'about' as Page, href: '#about' },
   ];
@@ -52,9 +52,6 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
             <div className="flex items-baseline gap-1">
               <span className="text-xl bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent font-semibold tracking-tight">
                 Trickbase AI
-              </span>
-              <span className="text-lg text-cyan-300 font-mono">
-                .ai
               </span>
             </div>
           </div>
