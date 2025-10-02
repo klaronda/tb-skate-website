@@ -77,8 +77,8 @@ export function VisionSection() {
         {/* Visual Content */}
         <div className="relative max-w-4xl mx-auto">
           <ImageWithFallback
-            src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzbndvYm9hcmRlciUyMGp1bXAlMjB0cmljayUyMG1vdW50YWlufGVufDF8fHx8MTc1ODkyMjk1OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-            alt="Snowboarder performing trick against mountain backdrop"
+            src="https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/future-snowboarder-action.jpg"
+            alt="Future action sports technology - snowboarder performing aerial trick"
             className="w-full h-64 lg:h-96 object-cover object-center rounded-lg"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-lg"></div>
