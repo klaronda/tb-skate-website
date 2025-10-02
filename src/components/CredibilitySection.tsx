@@ -50,7 +50,7 @@ export function CredibilitySection() {
           {/* Visual */}
           <div className="relative">
             <ImageWithFallback
-              src="https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/Marketing%20Assets/james-harrison-development-setup.jpg"
+              src="https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/james-harrison-development-setup.jpg"
               alt="Professional development environment - James Harrison coding setup"
               className="w-full h-80 object-cover object-center rounded-lg"
             />
