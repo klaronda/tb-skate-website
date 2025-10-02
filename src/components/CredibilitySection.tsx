@@ -50,8 +50,8 @@ export function CredibilitySection() {
           {/* Visual */}
           <div className="relative">
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYWNib29rJTIwcHJvJTIwZGV2ZWxvcG1lbnQlMjBjb2RlJTIwdGVjaG5vbG9neXxlbnwxfHx8fDE3NTg5MjI5NTl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-              alt="Modern development setup with MacBook Pro displaying code"
+              src="https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/Marketing%20Assets/james-harrison-development-setup.jpg"
+              alt="Professional development environment - James Harrison coding setup"
               className="w-full h-80 object-cover object-center rounded-lg"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent rounded-lg"></div>
