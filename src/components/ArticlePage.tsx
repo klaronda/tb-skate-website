@@ -321,7 +321,7 @@ The intersection of computer vision and skateboarding opens up possibilities we'
               <div>
                 <h4 className="text-white mb-2">About {article.author}</h4>
                 <p className="text-gray-300 leading-relaxed">
-                  Lead Computer Vision Engineer at Trickbase.ai with over 8 years of experience in machine learning 
+                  Lead Computer Vision Engineer at Trickbase AI with over 8 years of experience in machine learning 
                   and action sports analytics. Sarah holds a PhD in Computer Science from Stanford University and 
                   has published extensively on motion recognition and AI applications in sports.
                 </p>

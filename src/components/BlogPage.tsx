@@ -88,7 +88,7 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
         {/* Header */}
         <div className="mb-16">
           <h1 className="text-5xl text-white mb-6">
-            Trickbase.ai Blog
+            Trickbase AI Blog
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl">
             Insights from the cutting edge of AI-powered action sports recognition. Technical deep-dives, industry analysis, and the future of computer vision in skateboarding.
@@ -230,7 +230,7 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
           <Card className="bg-gradient-to-br from-gray-800 to-gray-900 border-gray-600 p-8">
             <CardHeader>
               <CardTitle className="text-3xl text-white mb-4">
-                Ready to Integrate Trickbase.ai?
+                Ready to Integrate Trickbase AI?
               </CardTitle>
               <CardDescription className="text-gray-300 text-lg max-w-2xl mx-auto">
                 Get notified when our AI skateboard trick recognition API becomes available for commercial integration. Join leading companies building the future of action sports technology.

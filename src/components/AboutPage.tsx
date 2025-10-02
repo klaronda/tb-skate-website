@@ -316,7 +316,7 @@ export function AboutPage() {
         <section>
           <Card className="bg-gradient-to-r from-blue-900 to-purple-900 border-blue-800">
             <CardContent className="p-12 text-center">
-              <h3 className="text-white mb-4">Ready to Integrate Trickbase.ai?</h3>
+              <h3 className="text-white mb-4">Ready to Integrate Trickbase AI?</h3>
               <p className="text-blue-200 mb-8 max-w-2xl mx-auto">
                 Get notified when our AI skateboard trick recognition API becomes available for commercial integration. 
                 Be among the first to build next-generation action sports applications.

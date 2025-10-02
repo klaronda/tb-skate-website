@@ -51,7 +51,7 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
             </div>
             <div className="flex items-baseline gap-1">
               <span className="text-xl bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent font-semibold tracking-tight">
-                Trickbase
+                Trickbase AI
               </span>
               <span className="text-lg text-cyan-300 font-mono">
                 .ai
