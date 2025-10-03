@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Badge } from './ui/badge';
-import heroImage from 'figma:asset/4d9dc80df3a0d522766cdbe25104eb6d5f33ef75.png';
+// Using Supabase hosted hero asset
+const heroImage = 'https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/hero-asset.jpeg';
 
 export function Hero() {
   const [email, setEmail] = useState('');
