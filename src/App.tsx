@@ -15,22 +15,34 @@ import { BlogPage } from './components/BlogPage';
 import { ArticlePage } from './components/ArticlePage';
 import { PrivacyPolicyPage } from './components/PrivacyPolicyPage';
 import { TermsOfServicePage } from './components/TermsOfServicePage';
+import { MobileAppWrapper } from './MobileAppWrapper';
 
-type Page = 'home' | 'metrics' | 'documentation' | 'blog' | 'about' | 'privacy' | 'terms' | 'article';
+type Page = 'home' | 'metrics' | 'documentation' | 'blog' | 'about' | 'privacy' | 'terms' | 'article' | 'app';
+type AppMode = 'marketing' | 'mobile';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [currentArticle, setCurrentArticle] = useState<string>('');
+  const [appMode, setAppMode] = useState<AppMode>('marketing');
 
   // Scroll to top when page changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentPage]);
 
+  const handleLaunchApp = () => {
+    setAppMode('mobile');
+  };
+
+  // Render mobile app if in mobile mode
+  if (appMode === 'mobile') {
+    return <MobileAppWrapper />;
+  }
+
   const renderHomePage = () => (
     <main>
       <section id="home">
-        <Hero />
+        <Hero onLaunchApp={handleLaunchApp} />
       </section>
       <ProblemSection />
       <section id="progress">
@@ -39,7 +51,7 @@ export default function App() {
       <HowItWorksSection />
       <VisionSection />
       <CredibilitySection />
-      <CTASection />
+      <CTASection onLaunchApp={handleLaunchApp} />
       <section id="about">
         <Footer onNavigate={setCurrentPage} />
       </section>

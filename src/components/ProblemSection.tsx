@@ -1,4 +1,5 @@
-import reviewMarkersImage from 'figma:asset/d44b9f85cc95025724d459b97a3643873f564ba2.png';
+// Using placeholder image for now
+const reviewMarkersImage = 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop&crop=center';
 
 export function ProblemSection() {
   return (

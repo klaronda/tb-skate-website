@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Badge } from './ui/badge';
 // Using Supabase hosted hero asset
 const heroImage = 'https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/hero-asset.jpeg';
 
-export function Hero() {
+interface HeroProps {
+  onLaunchApp?: () => void;
+}
+
+export function Hero({ onLaunchApp }: HeroProps) {
   const [email, setEmail] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -32,7 +36,7 @@ export function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 text-center text-white">
         <Badge variant="secondary" className="mb-6 bg-gray-800/60 text-gray-200 border-gray-600/50">
-          Coming Soon
+          Now Available
         </Badge>
         
         <h1 className="mb-6 text-5xl md:text-7xl tracking-tight">
@@ -42,8 +46,26 @@ export function Hero() {
         </h1>
         
         <p className="mb-8 text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto">
-          We're building the base model for computer vision in action sports.
+          Get personalized coaching feedback on your skateboarding tricks with AI-powered analysis.
         </p>
+
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto mb-8">
+          <Button 
+            onClick={onLaunchApp}
+            size="lg" 
+            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
+          >
+            Try the App
+          </Button>
+          <Button 
+            variant="outline" 
+            size="lg" 
+            className="border-white/30 text-white hover:bg-white/10 px-8 py-3"
+          >
+            Learn More
+          </Button>
+        </div>
 
         {/* Waitlist Form */}
         <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" role="form" aria-label="Email waitlist signup">

@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Rocket, BarChart3, Target } from 'lucide-react';
 
-export function CTASection() {
+interface CTASectionProps {
+  onLaunchApp?: () => void;
+}
+
+export function CTASection({ onLaunchApp }: CTASectionProps) {
   const [email, setEmail] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -20,15 +24,32 @@ export function CTASection() {
         <Card className="bg-gradient-to-br from-gray-800 to-gray-700 border border-gray-600 text-white">
           <CardHeader className="text-center pb-8">
             <CardTitle className="text-4xl mb-4">
-              Be the First to Access Trickbase CV API
+              Ready to Improve Your Skateboarding?
             </CardTitle>
             <CardDescription className="text-gray-300 text-lg max-w-2xl mx-auto">
-              Join our waitlist to get early access to the most advanced skateboarding trick recognition API. Perfect for developers, content creators, and action sports companies.
+              Get personalized AI coaching feedback on your tricks. Upload a video and receive detailed analysis to help you land tricks consistently.
             </CardDescription>
           </CardHeader>
           <CardContent className="text-center">
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto mb-6" role="form" aria-label="API waitlist signup">
-              <label htmlFor="cta-email" className="sr-only">Email address for API access</label>
+            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto mb-6">
+              <Button 
+                onClick={onLaunchApp}
+                size="lg" 
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 flex-1"
+              >
+                Try the App Now
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-gray-500 text-white hover:bg-gray-600 px-8 py-3 flex-1"
+              >
+                Learn More
+              </Button>
+            </div>
+            
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto mb-6" role="form" aria-label="Email waitlist signup">
+              <label htmlFor="cta-email" className="sr-only">Email address for updates</label>
               <Input
                 id="cta-email"
                 type="email"
@@ -39,7 +60,7 @@ export function CTASection() {
                 aria-describedby="cta-email-desc"
                 className="flex-1 bg-gray-600 border-gray-500 text-white placeholder:text-gray-300 focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
               />
-              <span id="cta-email-desc" className="sr-only">Join the waitlist for early API access and updates</span>
+              <span id="cta-email-desc" className="sr-only">Join the waitlist for updates and early access</span>
               <Button type="submit" size="lg" variant="secondary" className="whitespace-nowrap focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800">
                 Join Waitlist
               </Button>
