@@ -36,7 +36,7 @@ export function Hero({ onLaunchApp }: HeroProps) {
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 text-center text-white">
         <Badge variant="secondary" className="mb-6 bg-gray-800/60 text-gray-200 border-gray-600/50">
-          Now Available
+          Now Available - Vercel Deployment Test
         </Badge>
         
         <h1 className="mb-6 text-5xl md:text-7xl tracking-tight">
