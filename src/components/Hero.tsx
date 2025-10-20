@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Badge } from './ui/badge';
-// Using Supabase hosted hero asset
+// Using Supabase hosted hero asset - updated for Vercel deployment
 const heroImage = 'https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/hero-asset.jpeg';
 
 interface HeroProps {
