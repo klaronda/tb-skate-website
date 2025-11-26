@@ -63,7 +63,62 @@ export function ArticlePage({ articleId, onNavigate }: ArticlePageProps) {
         }
       } catch (err: any) {
         console.error("Error fetching article:", err.message);
-        setError("Failed to load article. Please try again later.");
+        // Fallback to hardcoded article if database fails
+        if (articleId === 'introducing-trickbase-ai-skateboarding-tricks') {
+          setArticle({
+            title: "Introducing Trickbase: AI That Sees Skateboarding Tricks",
+            author: "Trickbase AI Team",
+            publishDate: "October 1, 2025",
+            readTime: "8 min read",
+            category: "AI Technology",
+            tags: ["AI", "Computer Vision", "Skateboarding", "API", "Technology", "Sports Analytics", "Machine Learning"],
+            excerpt: "Skateboarding is a sport built on motion, balance, and nuance. Trickbase AI steps in to analyze skateboarding footage, detect tricks, score execution, and return deep metadata - all in a developer-friendly package.",
+            heroImage: "https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.png",
+            content: `## What is Trickbase AI?
+
+Skateboarding is a sport built on motion, balance, and nuance. A kickflip isn't just "a flip" — it's a precise sequence of pop, flick, catch, and rollaway. Until now, no AI system could reliably recognize these mechanics.
+
+**Trickbase AI** steps in to analyze skateboarding footage, detect tricks, score execution, and return deep metadata — all in a developer-friendly package.
+
+## Why It Matters
+
+Traditional video analysis tools see "person with board." Trickbase sees the difference between a heelflip and a kickflip, measures rotation consistency, and tracks landing stability.
+
+This opens doors for:
+- **Content platforms** auto-tagging trick clips
+- **Competition analytics** with real-time scoring
+- **Training apps** providing objective feedback
+- **Broadcast tools** generating instant highlights
+
+## How It Works
+
+Our pipeline processes video through multiple stages:
+
+- **Frame Sampling / Extraction**: Break the video into frames or short clips, sampling at optimal intervals
+- **Pose Estimation & Feature Extraction**: Use pose estimation (body joints, board edges, foot positions) + motion features to get a condensed representation
+- **Trick Classification Model**: A neural network (CNNs, temporal networks, or hybrid architectures) classifies which trick(s) occurred in a clip
+- **Scoring & Metadata Layer**: On top, a scoring engine weights execution features (landing stability, rotation smoothness, consistency over time) to assign metrics
+- **Return Structured Output**: The API returns JSON: trick name(s), confidence, timestamps, score, extra metadata (e.g. airtime, rotation)
+
+## Current Progress
+
+We're actively training on real-world skateboarding datasets. Current model accuracy:
+- **Rolling detection**: 82%
+- **Pop mechanics**: 88%
+- **Flick recognition**: 83%
+
+These numbers improve weekly as we expand our training data and refine our models.
+
+## What's Next
+
+We're building toward a foundation model for action sports — starting with skateboarding, then expanding to snowboarding, surfing, and beyond.
+
+Join our waitlist to get early API access when we launch.`,
+            slug: "introducing-trickbase-ai-skateboarding-tricks",
+          });
+        } else {
+          setError("Failed to load article. Please try again later.");
+        }
       } finally {
         setLoading(false);
       }
@@ -99,39 +154,39 @@ export function ArticlePage({ articleId, onNavigate }: ArticlePageProps) {
   return (
     <div className="min-h-screen bg-gray-900 pt-16">
       <div className="max-w-4xl mx-auto px-4 py-16">
-        <Button 
+          <Button 
           variant="link" 
           className="text-blue-400 hover:text-blue-300 mb-8 p-0 h-auto"
-          onClick={() => onNavigate('blog')}
-        >
+            onClick={() => onNavigate('blog')}
+          >
           <ArrowLeft className="w-4 h-4 mr-2" /> Back to Blog
-        </Button>
+          </Button>
 
         <h1 className="text-5xl text-white mb-6">{article.title}</h1>
         <div className="flex items-center text-gray-400 text-sm mb-8">
           <User className="w-4 h-4 mr-2" />
-          <span>{article.author}</span>
+                <span>{article.author}</span>
           <Calendar className="w-4 h-4 ml-4 mr-2" />
           <span>{article.publishDate}</span>
           <Clock className="w-4 h-4 ml-4 mr-2" />
-          <span>{article.readTime}</span>
-        </div>
+                <span>{article.readTime}</span>
+            </div>
 
-        <ImageWithFallback
-          src={article.heroImage}
-          alt={article.title}
+              <ImageWithFallback
+                src={article.heroImage}
+                alt={article.title}
           className={`w-full h-64 lg:h-96 object-cover rounded-lg mb-10 ${
             article.slug === 'rise-of-ai-action-sports' ? 'object-left' : 'object-bottom'
           }`}
-        />
+            />
 
         <div className="flex flex-wrap gap-2 mb-10">
           {article.tags.map((tag, index) => (
             <Badge key={index} variant="secondary" className="bg-blue-600 text-white">
-              {tag}
-            </Badge>
-          ))}
-        </div>
+                  {tag}
+                </Badge>
+              ))}
+            </div>
 
         <div className="prose prose-lg prose-invert max-w-none">
           <ReactMarkdown 
@@ -152,7 +207,7 @@ export function ArticlePage({ articleId, onNavigate }: ArticlePageProps) {
           >
             {article.content}
           </ReactMarkdown>
-        </div>
+          </div>
 
         <div className="mt-12 pt-8 border-t border-gray-800 flex justify-end">
           <Button 

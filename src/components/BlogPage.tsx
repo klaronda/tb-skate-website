@@ -186,11 +186,11 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
         {blogPosts.length > 1 && (
           <div className="mb-16">
             <h2 className="text-2xl text-white mb-8">All Posts</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {blogPosts.map((post, index) => (
                 <Card key={post.id} className="bg-gray-800 border-gray-700 hover:border-blue-600 transition-colors">
                   <div className="relative">
-                    <ImageWithFallback
+                <ImageWithFallback
                       src={post.hero_image_url}
                       alt={post.title}
                       className="w-full h-48 object-cover object-center rounded-t-lg"
@@ -207,35 +207,35 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
                       <span>{formatDate(post.published_at)}</span>
                       <Clock className="w-4 h-4 ml-2" />
                       <span>{post.read_time}</span>
-                    </div>
-                    
+              </div>
+              
                     <CardTitle className="text-xl text-white mb-3 line-clamp-2">
-                      {post.title}
-                    </CardTitle>
-                    
+                  {post.title}
+                </CardTitle>
+
                     <CardDescription className="text-gray-300 text-sm mb-4 line-clamp-3">
-                      {post.excerpt}
-                    </CardDescription>
-                    
+                  {post.excerpt}
+                </CardDescription>
+                
                     <div className="flex flex-wrap gap-2 mb-4">
                       {post.tags.slice(0, 3).map((tag, tagIndex) => (
                         <Badge key={tagIndex} variant="secondary" className="bg-gray-700 text-gray-300 text-xs">
                           {tag}
                         </Badge>
                       ))}
-                    </div>
-                    
-                    <Button 
+                </div>
+
+                  <Button 
                       variant="link" 
                       className="text-blue-400 hover:text-blue-300 p-0 h-auto justify-start text-sm"
-                      onClick={() => onNavigateToArticle(post.slug)}
-                    >
+                    onClick={() => onNavigateToArticle(post.slug)}
+                  >
                       Read More <ArrowRight className="w-3 h-3 ml-1" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+                  </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
           </div>
         )}
 
