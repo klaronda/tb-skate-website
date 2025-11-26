@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
+import { supabase } from '../lib/supabase';
 import { 
   Heart, 
   Users, 
@@ -18,6 +19,36 @@ import {
 } from 'lucide-react';
 
 export function AboutPage() {
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const { error } = await supabase
+        .from('waitlist')
+        .insert([{ email: email.trim() }]);
+
+      if (error) throw error;
+
+      setSubmitStatus('success');
+      setEmail('');
+      
+      // Reset status after 3 seconds
+      setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 3000);
+    } catch (error) {
+      console.error('Error submitting email:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   const teamValues = [
     {
       icon: Heart,
@@ -105,7 +136,7 @@ export function AboutPage() {
                 </div>
                 <div className="relative">
                   <img
-                    src="https://images.unsplash.com/photo-1592503254512-f31277392770?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1cmJhbiUyMHNrYXRlYm9hcmRpbmclMjBjb21tdW5pdHl8ZW58MXx8fHwxNzU4OTIyOTU5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                    src="https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/built-by-skaters.webp"
                     alt="Urban skateboarding community"
                     className="w-full h-64 object-cover object-center rounded-lg"
                   />
@@ -316,18 +347,29 @@ export function AboutPage() {
                 Get notified when our AI skateboard trick recognition API becomes available for commercial integration. 
                 Be among the first to build next-generation action sports applications.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto mb-6">
+              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto mb-6">
                 <input
                   type="email"
                   placeholder="Enter your business email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  disabled={isSubmitting}
                   className="flex-1 px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   aria-label="Business email for API access updates"
                 />
-                <Button className="bg-white text-blue-900 hover:bg-gray-100 px-8 py-3">
+                <Button 
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-white text-blue-900 hover:bg-gray-100 px-8 py-3"
+                >
                   <Mail className="w-4 h-4 mr-2" />
-                  Get API Access
+                  {isSubmitting ? 'Submitting...' : submitStatus === 'success' ? '✓ Joined!' : 'Get API Access'}
                 </Button>
-              </div>
+              </form>
+              {submitStatus === 'error' && (
+                <p className="text-sm text-red-300 text-center mb-4">Something went wrong. Please try again.</p>
+              )}
               <div className="grid md:grid-cols-3 gap-6 text-sm text-blue-300">
                 <div className="flex items-center justify-center gap-2">
                   <div className="w-2 h-2 bg-blue-400 rounded-full"></div>

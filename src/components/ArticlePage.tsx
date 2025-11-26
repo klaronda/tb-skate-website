@@ -46,6 +46,14 @@ export function ArticlePage({ articleId, onNavigate }: ArticlePageProps) {
         }
 
         if (data) {
+          // Use specific image for "Rise of AI" post
+          let heroImage = data.hero_image_url;
+          if (data.title?.toLowerCase().includes('rise of ai') || data.slug?.includes('rise-of-ai')) {
+            heroImage = 'https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/rise-of-ai.jpg';
+          } else if (data.title?.toLowerCase().includes('introducing trickbase') || data.slug?.includes('introducing-trickbase')) {
+            heroImage = 'https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.png';
+          }
+          
           setArticle({
             title: data.title,
             author: data.author,
@@ -54,7 +62,7 @@ export function ArticlePage({ articleId, onNavigate }: ArticlePageProps) {
             category: 'AI Technology',
             tags: data.tags,
             excerpt: data.excerpt,
-            heroImage: data.hero_image_url,
+            heroImage: heroImage,
             content: data.content,
             slug: data.slug,
           });
@@ -175,7 +183,7 @@ Join our waitlist to get early API access when we launch.`,
               <ImageWithFallback
                 src={article.heroImage}
                 alt={article.title}
-          className={`w-full h-64 lg:h-96 object-cover rounded-lg mb-10 ${
+          className={`w-full h-64 lg:h-96 object-cover rounded-lg mb-16 ${
             article.slug === 'rise-of-ai-action-sports' ? 'object-left' : 'object-bottom'
           }`}
             />
@@ -196,9 +204,9 @@ Join our waitlist to get early API access when we launch.`,
               h2: ({children}) => <h2 className="text-2xl text-white font-medium mb-4 mt-6">{children}</h2>,
               h3: ({children}) => <h3 className="text-xl text-white font-semibold mb-3 mt-5">{children}</h3>,
               p: ({children}) => <p className="text-gray-300 mb-4 leading-relaxed">{children}</p>,
-              ul: ({children}) => <ul className="list-disc text-gray-300 mb-4 space-y-2 ml-6">{children}</ul>,
-              ol: ({children}) => <ol className="list-decimal list-inside text-gray-300 mb-4 space-y-2">{children}</ol>,
-              li: ({children}) => <li className="text-gray-300">{children}</li>,
+              ul: ({children}) => <ul className="list-disc text-gray-300 mb-4 space-y-2" style={{ paddingLeft: '36px' }}>{children}</ul>,
+              ol: ({children}) => <ol className="list-decimal text-gray-300 mb-4 space-y-2" style={{ paddingLeft: '36px' }}>{children}</ol>,
+              li: ({children}) => <li className="text-gray-300" style={{ paddingLeft: '8px' }}>{children}</li>,
               strong: ({children}) => <strong className="text-white font-semibold">{children}</strong>,
               em: ({children}) => <em className="text-gray-200 italic">{children}</em>,
               code: ({children}) => <code className="bg-gray-800 text-blue-300 px-2 py-1 rounded text-sm">{children}</code>,

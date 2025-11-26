@@ -1,3 +1,4 @@
+import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
@@ -17,8 +18,12 @@ import {
   Camera
 } from 'lucide-react';
 
-export function PrivacyPolicyPage() {
-  const lastUpdated = "October 1, 2025";
+interface PrivacyPolicyPageProps {
+  onContact?: () => void;
+}
+
+export function PrivacyPolicyPage({ onContact }: PrivacyPolicyPageProps) {
+  const lastUpdated = "November 26, 2025";
 
   const dataTypes = [
     {
@@ -77,23 +82,6 @@ export function PrivacyPolicyPage() {
             <span className="text-gray-400">Last updated: {lastUpdated}</span>
           </div>
         </div>
-
-        {/* Disclaimer */}
-        <Card className="bg-yellow-900/20 border-yellow-800 mb-12">
-          <CardContent className="p-6">
-            <div className="flex items-start gap-3">
-              <AlertTriangle className="h-5 w-5 text-yellow-400 mt-0.5" />
-              <div>
-                <h3 className="text-yellow-300 mb-2">Legal Review Required</h3>
-                <p className="text-yellow-200 text-sm">
-                  This is a placeholder privacy policy. Please consult with legal counsel before using this content 
-                  in production. This template covers common privacy practices but may not address all regulatory 
-                  requirements for your specific jurisdiction or business model.
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
 
         <div className="space-y-12">
           {/* Introduction */}
@@ -537,13 +525,11 @@ export function PrivacyPolicyPage() {
                   If you have questions about this Privacy Policy or our data practices, 
                   please don't hesitate to contact us.
                 </p>
-                <div className="space-y-2 text-blue-200">
-                  <p>Email: privacy@trickbase.ai</p>
-                  <p>Address: [Company Address]</p>
-                  <p>Phone: [Phone Number]</p>
-                </div>
-                <Button className="mt-6 bg-white text-blue-900 hover:bg-gray-100">
-                  Contact Privacy Team
+                <Button 
+                  className="mt-6 bg-white text-blue-900 hover:bg-gray-100"
+                  onClick={onContact}
+                >
+                  Contact Trickbase
                 </Button>
               </CardContent>
             </Card>

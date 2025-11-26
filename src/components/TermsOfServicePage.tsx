@@ -19,7 +19,11 @@ import {
   Mail
 } from 'lucide-react';
 
-export function TermsOfServicePage() {
+interface TermsOfServicePageProps {
+  onContact?: () => void;
+}
+
+export function TermsOfServicePage({ onContact }: TermsOfServicePageProps) {
   const lastUpdated = "October 1, 2025";
 
   const serviceTerms = [
@@ -100,23 +104,6 @@ export function TermsOfServicePage() {
             <span className="text-gray-400">Last updated: {lastUpdated}</span>
           </div>
         </div>
-
-        {/* Disclaimer */}
-        <Card className="bg-yellow-900/20 border-yellow-800 mb-12">
-          <CardContent className="p-6">
-            <div className="flex items-start gap-3">
-              <AlertTriangle className="h-5 w-5 text-yellow-400 mt-0.5" />
-              <div>
-                <h3 className="text-yellow-300 mb-2">Legal Review Required</h3>
-                <p className="text-yellow-200 text-sm">
-                  This is a placeholder Terms of Service. Please consult with legal counsel before using this content 
-                  in production. This template covers common business terms but may not address all legal requirements 
-                  for your specific jurisdiction, business model, or industry regulations.
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
 
         <div className="space-y-12">
           {/* Agreement to Terms */}
@@ -561,15 +548,13 @@ export function TermsOfServicePage() {
                 <h3 className="text-white mb-4">Questions About These Terms?</h3>
                 <p className="text-blue-200 mb-6">
                   If you have questions about these Terms of Service or need clarification 
-                  on any policies, our legal team is here to help.
+                  on any policies, we're here to help.
                 </p>
-                <div className="space-y-2 text-blue-200 mb-6">
-                  <p>Legal: legal@trickbase.ai</p>
-                  <p>Business: business@trickbase.ai</p>
-                  <p>Support: support@trickbase.ai</p>
-                </div>
-                <Button className="bg-white text-blue-900 hover:bg-gray-100">
-                  Contact Legal Team
+                <Button 
+                  className="bg-white text-blue-900 hover:bg-gray-100"
+                  onClick={onContact}
+                >
+                  Contact Trickbase
                 </Button>
               </CardContent>
             </Card>

@@ -40,17 +40,37 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
         }
 
         if (data) {
-          setBlogPosts(data.map(post => ({
-            id: post.id.toString(),
-            title: post.title,
-            slug: post.slug,
-            excerpt: post.excerpt,
-            author: post.author,
-            hero_image_url: post.hero_image_url,
-            tags: post.tags,
-            published_at: post.published_at,
-            read_time: post.read_time || '8 min read',
-          })));
+          // Production asset URLs
+          const productionImageUrl = 'https://www.trickbaseai.com/assets/d44b9f85cc95025724d459b97a3643873f564ba2-CZZPRN5C.png';
+          const riseOfAiImageUrl = 'https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/rise-of-ai.jpg';
+          const introducingTrickbaseImageUrl = 'https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.png';
+          
+          setBlogPosts(data.map(post => {
+            // Use specific image for "Rise of AI" post
+            let imageUrl = post.hero_image_url;
+            if (post.title?.toLowerCase().includes('rise of ai') || post.slug?.includes('rise-of-ai')) {
+              imageUrl = riseOfAiImageUrl;
+            } else if (post.title?.toLowerCase().includes('introducing trickbase') || post.slug?.includes('introducing-trickbase')) {
+              imageUrl = introducingTrickbaseImageUrl;
+            } else if (post.hero_image_url?.includes('supabase.co/storage')) {
+              // Keep valid Supabase storage URLs
+              imageUrl = post.hero_image_url;
+            } else if (!post.hero_image_url) {
+              imageUrl = productionImageUrl;
+            }
+            
+            return {
+              id: post.id.toString(),
+              title: post.title,
+              slug: post.slug,
+              excerpt: post.excerpt,
+              author: post.author,
+              hero_image_url: imageUrl,
+              tags: post.tags,
+              published_at: post.published_at,
+              read_time: post.read_time || '8 min read',
+            };
+          }));
         }
       } catch (err) {
         console.error("Error fetching blog posts:", err);
@@ -118,17 +138,21 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
         {blogPosts.length > 0 && (
           <div className="mb-16">
             <h2 className="text-2xl text-white mb-8">Latest Post</h2>
-            <Card className="bg-gray-800 border-gray-700 overflow-hidden hover:bg-gray-750 transition-colors">
-              <div className="grid lg:grid-cols-2 gap-0">
-                <div className="relative">
+            <Card 
+              className="bg-gray-800 border-gray-700 overflow-hidden hover:bg-gray-750 hover:border-blue-600 transition-all duration-300 cursor-pointer group"
+              onClick={() => onNavigateToArticle(blogPosts[0].slug)}
+              style={{ maxHeight: '407px' }}
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 h-full">
+                <div className="relative h-full" style={{ maxHeight: '407px' }}>
                   <ImageWithFallback
                     src={blogPosts[0].hero_image_url}
                     alt={blogPosts[0].title}
-                    className="w-full h-64 lg:h-full object-cover object-center"
+                    className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                 </div>
-                <CardContent className="p-8">
+                <CardContent className="p-8 flex flex-col">
                   <div className="flex items-center gap-4 mb-4">
                     <Badge className="bg-blue-600 text-white">Featured</Badge>
                     <div className="flex items-center gap-2 text-gray-400 text-sm">
@@ -141,7 +165,7 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
                     </div>
                   </div>
                   
-                  <CardTitle className="text-2xl text-white mb-4">
+                  <CardTitle className="text-2xl text-white mb-4 group-hover:text-blue-400 transition-colors">
                     {blogPosts[0].title}
                   </CardTitle>
                   
@@ -169,7 +193,10 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
                     </div>
                     
                     <Button 
-                      onClick={() => onNavigateToArticle(blogPosts[0].slug)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onNavigateToArticle(blogPosts[0].slug);
+                      }}
                       className="bg-blue-600 hover:bg-blue-700 text-white"
                     >
                       Read More
@@ -188,18 +215,17 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
             <h2 className="text-2xl text-white mb-8">All Posts</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {blogPosts.map((post, index) => (
-                <Card key={post.id} className="bg-gray-800 border-gray-700 hover:border-blue-600 transition-colors">
-                  <div className="relative">
+                <Card 
+                  key={post.id} 
+                  className="bg-gray-800 border-gray-700 hover:border-blue-600 transition-all duration-300 overflow-hidden cursor-pointer group"
+                  onClick={() => onNavigateToArticle(post.slug)}
+                >
+                  <div className="relative h-48 overflow-hidden">
                 <ImageWithFallback
                       src={post.hero_image_url}
                       alt={post.title}
-                      className="w-full h-48 object-cover object-center rounded-t-lg"
+                      className="w-full h-full object-cover object-center rounded-tl-lg rounded-tr-lg transition-transform duration-300 group-hover:scale-110"
                     />
-                    <div className="absolute top-4 left-4">
-                      <Badge className="bg-blue-600 text-white">
-                        {index === 0 ? 'Latest' : 'Archive'}
-                      </Badge>
-                    </div>
                   </div>
                   <CardContent className="p-6">
                     <div className="flex items-center gap-2 text-gray-400 text-sm mb-3">
@@ -209,7 +235,7 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
                       <span>{post.read_time}</span>
               </div>
               
-                    <CardTitle className="text-xl text-white mb-3 line-clamp-2">
+                    <CardTitle className="text-xl text-white mb-3 line-clamp-2 group-hover:text-blue-400 transition-colors">
                   {post.title}
                 </CardTitle>
 
@@ -228,7 +254,10 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
                   <Button 
                       variant="link" 
                       className="text-blue-400 hover:text-blue-300 p-0 h-auto justify-start text-sm"
-                    onClick={() => onNavigateToArticle(post.slug)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onNavigateToArticle(post.slug);
+                      }}
                   >
                       Read More <ArrowRight className="w-3 h-3 ml-1" />
                   </Button>

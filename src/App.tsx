@@ -15,15 +15,84 @@ import { BlogPage } from './components/BlogPage';
 import { ArticlePage } from './components/ArticlePage';
 import { PrivacyPolicyPage } from './components/PrivacyPolicyPage';
 import { TermsOfServicePage } from './components/TermsOfServicePage';
+import { ContactModal } from './components/ContactModal';
 import { MobileAppWrapper } from './MobileAppWrapper';
 
 type Page = 'home' | 'metrics' | 'documentation' | 'blog' | 'about' | 'privacy' | 'terms' | 'article' | 'app';
 type AppMode = 'marketing' | 'mobile';
 
+// URL to page mapping
+const urlToPage: Record<string, Page> = {
+  '/': 'home',
+  '/blog': 'blog',
+  '/about': 'about',
+  '/privacy': 'privacy',
+  '/documentation': 'documentation',
+  '/terms': 'terms',
+};
+
+// Page to URL mapping
+const pageToUrl: Record<Page, string> = {
+  'home': '/',
+  'blog': '/blog',
+  'about': '/about',
+  'privacy': '/privacy',
+  'documentation': '/documentation',
+  'terms': '/terms',
+  'metrics': '/metrics',
+  'article': '/article',
+  'app': '/app',
+};
+
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [currentArticle, setCurrentArticle] = useState<string>('');
   const [appMode, setAppMode] = useState<AppMode>('marketing');
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  // Initialize page from URL on mount
+  useEffect(() => {
+    const path = window.location.pathname;
+    const page = urlToPage[path] || 'home';
+    setCurrentPage(page);
+    
+    // Handle article slugs in URL
+    if (path.startsWith('/blog/') && path !== '/blog') {
+      const slug = path.replace('/blog/', '');
+      setCurrentArticle(slug);
+      setCurrentPage('article');
+    }
+  }, []);
+
+  // Update URL when page changes
+  useEffect(() => {
+    const url = pageToUrl[currentPage] || '/';
+    if (currentPage === 'article' && currentArticle) {
+      window.history.pushState({ page: currentPage, article: currentArticle }, '', `/blog/${currentArticle}`);
+    } else if (window.location.pathname !== url) {
+      window.history.pushState({ page: currentPage }, '', url);
+    }
+  }, [currentPage, currentArticle]);
+
+  // Handle browser back/forward buttons
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      const path = window.location.pathname;
+      const page = urlToPage[path] || 'home';
+      setCurrentPage(page);
+      
+      if (path.startsWith('/blog/') && path !== '/blog') {
+        const slug = path.replace('/blog/', '');
+        setCurrentArticle(slug);
+        setCurrentPage('article');
+      } else {
+        setCurrentArticle('');
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Scroll to top when page changes
   useEffect(() => {
@@ -53,7 +122,7 @@ export default function App() {
       <CredibilitySection />
       <CTASection onLaunchApp={handleLaunchApp} />
       <section id="about">
-        <Footer onNavigate={setCurrentPage} />
+        <Footer onNavigate={setCurrentPage} onContact={() => setIsContactModalOpen(true)} />
       </section>
     </main>
   );
@@ -61,21 +130,21 @@ export default function App() {
   const renderMetricsPage = () => (
     <main>
       <MetricsPage />
-      <Footer onNavigate={setCurrentPage} />
+      <Footer onNavigate={setCurrentPage} onContact={() => setIsContactModalOpen(true)} />
     </main>
   );
 
   const renderDocumentationPage = () => (
     <main>
-      <DocumentationPage />
-      <Footer onNavigate={setCurrentPage} />
+      <DocumentationPage onContact={() => setIsContactModalOpen(true)} />
+      <Footer onNavigate={setCurrentPage} onContact={() => setIsContactModalOpen(true)} />
     </main>
   );
 
   const renderAboutPage = () => (
     <main>
       <AboutPage />
-      <Footer onNavigate={setCurrentPage} />
+      <Footer onNavigate={setCurrentPage} onContact={() => setIsContactModalOpen(true)} />
     </main>
   );
 
@@ -84,8 +153,9 @@ export default function App() {
       <BlogPage onNavigateToArticle={(articleId: string) => {
         setCurrentArticle(articleId);
         setCurrentPage('article');
+        window.history.pushState({ page: 'article', article: articleId }, '', `/blog/${articleId}`);
       }} />
-      <Footer onNavigate={setCurrentPage} />
+      <Footer onNavigate={setCurrentPage} onContact={() => setIsContactModalOpen(true)} />
     </main>
   );
 
@@ -95,21 +165,21 @@ export default function App() {
         articleId={currentArticle} 
         onNavigate={(page: string) => setCurrentPage(page as Page)} 
       />
-      <Footer onNavigate={setCurrentPage} />
+      <Footer onNavigate={setCurrentPage} onContact={() => setIsContactModalOpen(true)} />
     </main>
   );
 
   const renderPrivacyPage = () => (
     <main>
-      <PrivacyPolicyPage />
-      <Footer onNavigate={setCurrentPage} />
+      <PrivacyPolicyPage onContact={() => setIsContactModalOpen(true)} />
+      <Footer onNavigate={setCurrentPage} onContact={() => setIsContactModalOpen(true)} />
     </main>
   );
 
   const renderTermsPage = () => (
     <main>
-      <TermsOfServicePage />
-      <Footer onNavigate={setCurrentPage} />
+      <TermsOfServicePage onContact={() => setIsContactModalOpen(true)} />
+      <Footer onNavigate={setCurrentPage} onContact={() => setIsContactModalOpen(true)} />
     </main>
   );
 
@@ -141,6 +211,10 @@ export default function App() {
       {/* SEO Meta Tags would go here in a real app */}
       <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
       {renderCurrentPage()}
+      <ContactModal 
+        open={isContactModalOpen} 
+        onOpenChange={setIsContactModalOpen} 
+      />
     </div>
   );
 }

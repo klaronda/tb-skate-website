@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
@@ -14,12 +14,33 @@ import {
   Settings,
   Play,
   Copy,
-  CheckCircle,
-  ExternalLink
+  CheckCircle
 } from 'lucide-react';
 
-export function DocumentationPage() {
+interface DocumentationPageProps {
+  onContact?: () => void;
+}
+
+export function DocumentationPage({ onContact }: DocumentationPageProps) {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
+
+  // Add noindex meta tag to hide from search engines
+  useEffect(() => {
+    let metaRobots = document.querySelector('meta[name="robots"]');
+    if (!metaRobots) {
+      metaRobots = document.createElement('meta');
+      metaRobots.setAttribute('name', 'robots');
+      document.head.appendChild(metaRobots);
+    }
+    metaRobots.setAttribute('content', 'noindex, nofollow');
+    
+    return () => {
+      // Clean up on unmount
+      if (metaRobots) {
+        metaRobots.setAttribute('content', 'index, follow');
+      }
+    };
+  }, []);
 
   const copyToClipboard = (code: string, id: string) => {
     navigator.clipboard.writeText(code);
@@ -536,12 +557,11 @@ const analyzeVideo = async (videoUrl) => {
                   Our team is here to help you integrate skateboard trick recognition into your application.
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
-                  <Button className="bg-white text-blue-900 hover:bg-gray-100">
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Contact Support
-                  </Button>
-                  <Button variant="outline" className="border-blue-400 text-blue-300 hover:bg-blue-800">
-                    Join Discord
+                  <Button 
+                    className="bg-white text-blue-900 hover:bg-gray-100"
+                    onClick={onContact}
+                  >
+                    Contact Trickbase
                   </Button>
                 </div>
               </CardContent>

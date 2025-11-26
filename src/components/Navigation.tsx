@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Menu, X, Activity } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
+import logoSvg from '../assets/Logo.svg';
 
 type Page = 'home' | 'metrics' | 'documentation' | 'blog' | 'about';
 
@@ -44,9 +45,13 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo and Brand */}
-          <div className="flex items-center gap-3">
+          <button
+            onClick={() => onNavigate('home')}
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none"
+            aria-label="Go to homepage"
+          >
             <div className="relative w-8 h-8 bg-gradient-to-br from-blue-500 via-purple-600 to-cyan-500 rounded-lg flex items-center justify-center shadow-lg">
-              <Activity className="w-5 h-5 text-white animate-pulse" />
+              <img src={logoSvg} alt="" style={{ width: '26.6px', height: '26.6px', filter: 'drop-shadow(0 0 0.5px white)' }} />
               <div className="absolute inset-0 bg-gradient-to-br from-blue-400/30 to-purple-400/30 rounded-lg blur-sm"></div>
             </div>
             <div className="flex items-baseline gap-1">
@@ -54,7 +59,7 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
                 Trickbase AI
               </span>
             </div>
-          </div>
+          </button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
