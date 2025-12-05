@@ -41,7 +41,7 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
 
         if (data) {
           // Production asset URLs
-          const productionImageUrl = 'https://www.trickbaseai.com/assets/d44b9f85cc95025724d459b97a3643873f564ba2-CZZPRN5C.png';
+          const productionImageUrl = 'https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.png';
           const riseOfAiImageUrl = 'https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/rise-of-ai.jpg';
           const introducingTrickbaseImageUrl = 'https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.png';
           

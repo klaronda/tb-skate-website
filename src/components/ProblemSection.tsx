@@ -1,5 +1,5 @@
-// Video analysis interface image from production
-const reviewMarkersImage = 'https://www.trickbaseai.com/assets/d44b9f85cc95025724d459b97a3643873f564ba2-CZZPRN5C.png';
+// Video analysis interface image from Supabase storage
+const reviewMarkersImage = 'https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.png';
 
 export function ProblemSection() {
   return (
