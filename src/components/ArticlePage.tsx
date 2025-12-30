@@ -49,9 +49,9 @@ export function ArticlePage({ articleId, onNavigate }: ArticlePageProps) {
           // Use specific image for "Rise of AI" post
           let heroImage = data.hero_image_url;
           if (data.title?.toLowerCase().includes('rise of ai') || data.slug?.includes('rise-of-ai')) {
-            heroImage = 'https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing_assets/rise-of-ai.jpg';
+            heroImage = 'https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing-assets/rise-of-ai.jpg';
           } else if (data.title?.toLowerCase().includes('introducing trickbase') || data.slug?.includes('introducing-trickbase')) {
-            heroImage = 'https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.png';
+            heroImage = 'https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing-assets/skateboard-computer-vision.png';
           }
           
           setArticle({
@@ -81,7 +81,7 @@ export function ArticlePage({ articleId, onNavigate }: ArticlePageProps) {
             category: "AI Technology",
             tags: ["AI", "Computer Vision", "Skateboarding", "API", "Technology", "Sports Analytics", "Machine Learning"],
             excerpt: "Skateboarding is a sport built on motion, balance, and nuance. Trickbase AI steps in to analyze skateboarding footage, detect tricks, score execution, and return deep metadata - all in a developer-friendly package.",
-            heroImage: "https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.png",
+            heroImage: "https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing-assets/skateboard-computer-vision.png",
             content: `## What is Trickbase AI?
 
 Skateboarding is a sport built on motion, balance, and nuance. A kickflip isn't just "a flip" — it's a precise sequence of pop, flick, catch, and rollaway. Until now, no AI system could reliably recognize these mechanics.

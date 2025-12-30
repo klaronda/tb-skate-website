@@ -4,7 +4,7 @@ import { Input } from './ui/input';
 import { Badge } from './ui/badge';
 import { supabase } from '../lib/supabase';
 // Using Supabase hosted hero asset - updated for Vercel deployment
-const heroImage = 'https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing_assets/hero-asset.jpeg';
+const heroImage = 'https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing-assets/hero-asset.jpeg';
 
 export function Hero() {
   const [email, setEmail] = useState('');

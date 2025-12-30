@@ -1,5 +1,5 @@
 // Video analysis interface image from Supabase storage
-const reviewMarkersImage = 'https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.png';
+const reviewMarkersImage = 'https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing-assets/skateboard-computer-vision.png';
 
 export function ProblemSection() {
   return (

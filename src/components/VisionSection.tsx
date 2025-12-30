@@ -78,7 +78,7 @@ export function VisionSection() {
         {/* Visual Content */}
         <div className="relative max-w-4xl mx-auto">
           <ImageWithFallback
-            src="https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing_assets/future-snowboarder-action.jpg"
+            src="https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing-assets/future-snowboarder-action.jpg"
             alt="Future action sports technology - snowboarder performing aerial trick"
             className="w-full h-64 lg:h-96 object-cover object-top rounded-lg"
           />

@@ -136,7 +136,7 @@ export function AboutPage() {
                 </div>
                 <div className="relative">
                   <img
-                    src="https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing_assets/built-by-skaters.webp"
+                    src="https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing-assets/built-by-skaters.webp"
                     alt="Urban skateboarding community"
                     className="w-full h-64 object-cover object-center rounded-lg"
                   />
