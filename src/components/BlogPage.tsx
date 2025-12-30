@@ -44,11 +44,14 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
           const productionImageUrl = 'https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing-assets/skateboard-computer-vision.png';
           const riseOfAiImageUrl = 'https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing-assets/rise-of-ai.jpg';
           const introducingTrickbaseImageUrl = 'https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing-assets/skateboard-computer-vision.png';
+          const challengesImageUrl = 'https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing-assets/challenges-training-ai-action-sports.webp';
           
           setBlogPosts(data.map(post => {
-            // Use specific image for "Rise of AI" post
+            // Use specific image for each post
             let imageUrl = post.hero_image_url;
-            if (post.title?.toLowerCase().includes('rise of ai') || post.slug?.includes('rise-of-ai')) {
+            if (post.title?.toLowerCase().includes('challenges') || post.slug?.includes('challenges-training-ai')) {
+              imageUrl = challengesImageUrl;
+            } else if (post.title?.toLowerCase().includes('rise of ai') || post.slug?.includes('rise-of-ai')) {
               imageUrl = riseOfAiImageUrl;
             } else if (post.title?.toLowerCase().includes('introducing trickbase') || post.slug?.includes('introducing-trickbase')) {
               imageUrl = introducingTrickbaseImageUrl;

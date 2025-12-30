@@ -46,9 +46,11 @@ export function ArticlePage({ articleId, onNavigate }: ArticlePageProps) {
         }
 
         if (data) {
-          // Use specific image for "Rise of AI" post
+          // Use specific image for each post
           let heroImage = data.hero_image_url;
-          if (data.title?.toLowerCase().includes('rise of ai') || data.slug?.includes('rise-of-ai')) {
+          if (data.title?.toLowerCase().includes('challenges') || data.slug?.includes('challenges-training-ai')) {
+            heroImage = 'https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing-assets/challenges-training-ai-action-sports.webp';
+          } else if (data.title?.toLowerCase().includes('rise of ai') || data.slug?.includes('rise-of-ai')) {
             heroImage = 'https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing-assets/rise-of-ai.jpg';
           } else if (data.title?.toLowerCase().includes('introducing trickbase') || data.slug?.includes('introducing-trickbase')) {
             heroImage = 'https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing-assets/skateboard-computer-vision.png';
