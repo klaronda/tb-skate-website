@@ -41,9 +41,9 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
 
         if (data) {
           // Production asset URLs
-          const productionImageUrl = 'https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.png';
-          const riseOfAiImageUrl = 'https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/rise-of-ai.jpg';
-          const introducingTrickbaseImageUrl = 'https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.png';
+          const productionImageUrl = 'https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.png';
+          const riseOfAiImageUrl = 'https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing_assets/rise-of-ai.jpg';
+          const introducingTrickbaseImageUrl = 'https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.png';
           
           setBlogPosts(data.map(post => {
             // Use specific image for "Rise of AI" post
@@ -81,7 +81,7 @@ export function BlogPage({ onNavigateToArticle }: BlogPageProps) {
           slug: "introducing-trickbase-ai-skateboarding-tricks",
           excerpt: "Skateboarding is a sport built on motion, balance, and nuance. Trickbase AI steps in to analyze skateboarding footage, detect tricks, score execution, and return deep metadata - all in a developer-friendly package.",
           author: "Trickbase AI Team",
-          hero_image_url: "https://qsixicpenosvnhbohxoc.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.png",
+          hero_image_url: "https://onzjcgqzmqshmdvsmucz.supabase.co/storage/v1/object/public/marketing_assets/skateboard-computer-vision.png",
           tags: ["AI", "Computer Vision", "Skateboarding", "API", "Technology", "Sports Analytics", "Machine Learning"],
           published_at: "2025-10-01T00:00:00Z",
           read_time: "8 min read"
