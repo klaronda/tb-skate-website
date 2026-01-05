@@ -2,7 +2,7 @@ import React from 'react';
 import { Separator } from './ui/separator';
 import logoSvg from '../assets/Logo.svg';
 
-type Page = 'home' | 'metrics' | 'documentation' | 'about' | 'privacy' | 'terms';
+type Page = 'home' | 'metrics' | 'documentation' | 'about' | 'blog' | 'privacy' | 'terms';
 
 interface FooterProps {
   onNavigate?: (page: Page) => void;
@@ -13,7 +13,7 @@ export function Footer({ onNavigate, onContact }: FooterProps = {}) {
   const footerLinks = [
     { title: 'About', href: '#', page: 'about' as Page },
     { title: 'Contact', href: '#' },
-    { title: 'Blog', href: '#' },
+    { title: 'Blog', href: '#', page: 'blog' as Page },
     { title: 'Privacy', href: '#', page: 'privacy' as Page },
     { title: 'Terms', href: '#', page: 'terms' as Page },
   ];
